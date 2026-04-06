@@ -56,7 +56,7 @@ struct RGBPin { int r, g, b; };
 
 RGBPin LED_XOCAS  = {25, 26, 27};
 RGBPin LED_MOMO   = {14, 12, 13};
-RGBPin LED_LLADOS = {32, 33, 35};  // GPIO35 (input-capable but can be used for PWM)
+RGBPin LED_LLADOS = {32, 33, 23};  // GPIO23 (output-capable pin for PWM)
 
 // ─── PWM Output (Buzzer / Status Indicator) ──────────────────────
 #define PWM_OUTPUT_PIN 2    // GPIO2 - supports PWM, safe for ESP32
