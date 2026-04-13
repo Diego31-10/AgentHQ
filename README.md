@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🦞 AgentCity
+# 🦞 AgentHQ
 
 **A multi-agent AI system where three specialized agents collaborate in real time**
 
@@ -19,7 +19,7 @@
 
 AI agents are invisible — they live in terminals, logs, and API responses. You send a message, something happens, you get a reply.
 
-**AgentCity makes that invisible process visible.**
+**AgentHQ makes that invisible process visible.**
 
 Three specialized agents work together to process any task. While they work, you watch them live in a full-screen terminal dashboard. Each agent has a visual representation that changes based on what they're doing: resting on the sofa, working at the computer, or on the phone communicating with another agent.
 
@@ -27,7 +27,7 @@ Three specialized agents work together to process any task. While they work, you
 
 ## 🦞 The Residents
 
-AgentCity has three permanent residents, each one an AI agent with its own personality and role:
+AgentHQ has three permanent residents, each one an AI agent with its own personality and role:
 
 <div align="center">
 
@@ -56,7 +56,7 @@ Each agent moves between these three positions depending on what they're doing a
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
-║              === AGENTCITY  -  Multi-Agent Dashboard ===                 ║
+║              === AGENTHQ  -  Multi-Agent Dashboard ===                   ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ┌─ XOCAS - Planner ──────┐  ┌─ MOMO - Researcher ────┐  ┌─ LLADOS - Executor ────┐
 │   .--.                  │  │   .--.                  │  │   .--.                  │
@@ -134,7 +134,7 @@ Files are saved directly to your Desktop.
 
 ## 🌐 REST API (ESP32 Ready)
 
-AgentCity exposes a live state API on port `5001`, designed for future integration with physical hardware (servos, LEDs, LCD screens):
+AgentHQ exposes a live state API on port `5001`, designed for future integration with physical hardware (servos, LEDs, LCD screens):
 
 ```
 GET /states   → real-time state of all 3 agents
@@ -169,8 +169,8 @@ Example response:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/Diego31-10/agentcity.git
-cd agentcity
+git clone https://github.com/Diego31-10/agenthq.git
+cd agenthq
 
 # 2. Install dependencies
 npm install
@@ -195,7 +195,7 @@ The task input happens **inside the TUI** — type when prompted and press Enter
 ## 📁 Project Structure
 
 ```
-agentcity/
+agenthq/
 ├── src/
 │   ├── main.js          # Entry point — TUI, pipeline, file saving
 │   ├── agents.js        # Xocas, Momo, Llados agent logic
@@ -225,7 +225,7 @@ agentcity/
 
 Most people have no intuition for what multi-agent AI systems actually do. They know "AI" does something, but the process — the delegation, the specialization, the back-and-forth between agents — is completely opaque.
 
-AgentCity tries to fix that. Not with a diagram, but with movement you can see. When you watch three agents shift states in real time in response to a single message, something clicks that a static API response never achieves.
+AgentHQ tries to fix that. Not with a diagram, but with movement you can see. When you watch three agents shift states in real time in response to a single message, something clicks that a static API response never achieves.
 
 ---
 
@@ -239,6 +239,6 @@ MIT — see [LICENSE](./LICENSE)
 
 *Built with 🦞 and ❤️*
 
-**AgentCity** — *Where AI agents get to work*
+**AgentHQ** — *Where AI agents get to work*
 
 </div>

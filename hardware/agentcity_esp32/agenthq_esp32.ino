@@ -1,7 +1,7 @@
 /*
- * AgentCity - ESP32 Controller
- * 
- * Reads agent states from the AgentCity REST API and controls:
+ * AgentHQ - ESP32 Controller
+ *
+ * Reads agent states from the AgentHQ REST API and controls:
  *   - 3x SG90 servos via PCA9685 (I2C, addr 0x40)
  *   - 3x RGB LEDs (common cathode)
  *   - 3x LCD 16x2 via I2C
@@ -30,8 +30,8 @@
 const char* WIFI_SSID     = "DIEGO";
 const char* WIFI_PASSWORD = "TpDeDatv$039";
 
-// ─── AgentCity API ──────────────────────────────────────────────
-// Replace with your PC's local IP where AgentCity is running
+// ─── AgentHQ API ──────────────────────────────────────────────
+// Replace with your PC's local IP where AgentHQ is running
 const char* API_URL = "http://192.168.1.9:5001/states";
 
 // How often to poll the API (milliseconds)
@@ -128,7 +128,7 @@ bool offlineMode = false;
 // ─── Setup ───────────────────────────────────────────────────────
 void setup() {
   Serial.begin(115200);
-  Serial.println("[AgentCity] Booting...");
+  Serial.println("[AgentHQ] Booting...");
 
   // Init LED pins
   initLEDs(LED_XOCAS);
