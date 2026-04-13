@@ -229,27 +229,6 @@ AgentCity tries to fix that. Not with a diagram, but with movement you can see. 
 
 ---
 
-## 👥 Team
-
-### 🧠 AI & Software — Diego Torres
-[![GitHub](https://img.shields.io/badge/GitHub-Diego31--10-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Diego31-10)
-
-- AI architecture
-- Agent pipeline
-- LLM integration
-- Terminal UI
-- File generation system
-
-### ⚙️ Hardware & Electronics — Juan José Medina
-[![GitHub](https://img.shields.io/badge/GitHub-JuanjoMedina23-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JuanjoMedina23)
-
-- ESP32 firmware
-- Circuit design
-- PCB
-- Physical model construction
-
----
-
 ## 📜 License
 
 MIT — see [LICENSE](./LICENSE)
