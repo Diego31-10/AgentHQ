@@ -89,10 +89,22 @@ User Input (TUI)
       ├── Momo   (Researcher) ← claude-haiku-4-5 via OpenRouter
       └── Llados (Executor)   ← claude-haiku-4-5 via OpenRouter
       │
-      ├── State Manager  ──► REST API :5001  ──► (ESP32 ready)
+      ├── State Manager  ──► REST API :5001  ──► ESP32 (Physical City)
       │
       └── Pipeline: Xocas → Momo → Llados → File Output
 ```
+
+---
+
+## 🎬 Hardware Integration (ESP32)
+
+The REST API is fully integrated with an ESP32 microcontroller for real-time physical visualization:
+
+- **Status:** ✅ Code compiled and uploaded to ESP32
+- **Circuit:** ✅ Fully assembled and tested
+- **Functionality:** Agent states trigger real-time updates on LCD display and LED indicators
+
+[📹 **Demo Video of Physical Circuit in Action** - Coming Soon](#demo-video)
 
 ---
 
@@ -204,6 +216,10 @@ agenthq/
 │   ├── tui.js           # Terminal UI (blessed)
 │   ├── fileWriter.js    # Multi-format file output (.docx, .pdf, .md, .txt)
 │   └── api.js           # REST API (port 5001)
+├── hardware/
+│   └── agentcity_esp32/
+│       └── agenthq_esp32.ino  # ESP32 firmware (compiled & uploaded)
+├── circuits/            # Circuit diagrams and schematics
 ├── launch.ps1           # Windows launcher (opens in new terminal)
 ├── package.json
 └── README.md
@@ -211,12 +227,25 @@ agenthq/
 
 ---
 
+## 🎥 Demo Video {#demo-video}
+
+Watch the AgentHQ physical city in action:
+
+**[🎬 Insert circuit demo video here]**
+
+The video shows:
+- Live agent state visualization on ESP32 LCD display
+- Real-time LED indicators responding to agent activity
+- System integration between Node.js REST API and hardware
+
+---
+
 ## 🔮 What's Next
 
-- Physical city: ESP32 + servo motors + RGB LEDs + LCD displays per agent
 - Web dashboard mirroring the terminal state in real time
 - Llados with real tool access (calendar, email, web search)
 - Voice input/output integration
+- Servo motors for physical agent movement
 - More agents, more offices — the city grows
 
 ---
