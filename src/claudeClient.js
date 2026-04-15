@@ -1,24 +1,20 @@
 /**
- * ClawCity - Claude Client via OpenRouter
- * Uses OpenRouter API (free tier) with OpenAI-compatible SDK
+ * AgentHQ - Claude Client via GitHub Models
+ * Uses GitHub Models - FREE with GitHub token
  */
 import 'dotenv/config';
 import OpenAI from 'openai';
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-if (!OPENROUTER_API_KEY) {
-  throw new Error('OPENROUTER_API_KEY not found (env var). Put it in .env as OPENROUTER_API_KEY=... or export it before running.');
+if (!GITHUB_TOKEN) {
+  throw new Error('GITHUB_TOKEN not found (env var). Create one at https://github.com/settings/tokens (needs repo scope)');
 }
 
 export function createClient() {
   return new OpenAI({
-    apiKey: OPENROUTER_API_KEY,
-    baseURL: 'https://openrouter.ai/api/v1',
-    defaultHeaders: {
-      'HTTP-Referer': 'https://github.com/diego31-10/clawcity',
-      'X-Title': 'ClawCity',
-    },
+    baseURL: 'https://models.github.ai/inference',
+    apiKey: GITHUB_TOKEN,
   });
 }
 
@@ -26,54 +22,41 @@ function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-function unique(arr) {
-  return [...new Set(arr.filter(Boolean))];
-}
-
 export async function askClaude(
   client,
   systemPrompt,
   userMessage,
-  model = (process.env.CLAUDE_MODEL || 'openrouter/free')
+  model = (process.env.CLAUDE_MODEL || 'openai/gpt-4o')
 ) {
-  const fallbacks = (process.env.MODEL_FALLBACKS || '')
-    .split(',')
-    .map(s => s.trim())
-    .filter(Boolean);
-
-  const modelsToTry = unique([model, ...fallbacks]);
-
-  const maxRetriesPerModel = 3;
-
+  const maxRetries = 3;
   let lastErr;
-  for (const m of modelsToTry) {
-    for (let attempt = 0; attempt <= maxRetriesPerModel; attempt++) {
-      try {
-        const response = await client.chat.completions.create({
-          model: m,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userMessage },
-          ],
-          max_tokens: 768,
-        });
-        return response.choices[0].message.content;
-      } catch (err) {
-        lastErr = err;
-        const status = err?.status || err?.response?.status;
-        const msg = err?.message || '';
 
-        // 429 = rate limit / overloaded (muy común en modelos free)
-        // 503 = overloaded
-        const retryable = status === 429 || status === 503 || /rate limit|overloaded|try again/i.test(msg);
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await client.chat.completions.create({
+        model: model,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userMessage },
+        ],
+        max_tokens: 500,
+      });
 
-        if (!retryable || attempt === maxRetriesPerModel) break;
+      return response.choices[0].message.content;
+    } catch (err) {
+      lastErr = err;
+      const msg = err?.message || '';
+      const status = err?.status;
 
-        // Exponential backoff with jitter
-        const base = 600 * Math.pow(2, attempt);
-        const jitter = Math.floor(Math.random() * 250);
-        await sleep(base + jitter);
-      }
+      console.error(`[Model: ${model}] Status: ${status}, Error: ${msg.substring(0, 100)}`);
+
+      const retryable = /timeout|429|503|rate/i.test(msg);
+      if (!retryable || attempt === maxRetries) break;
+
+      // Exponential backoff
+      const base = 600 * Math.pow(2, attempt);
+      const jitter = Math.floor(Math.random() * 250);
+      await sleep(base + jitter);
     }
   }
 
