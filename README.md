@@ -16,16 +16,6 @@
 
 ---
 
-## 🎬 Demo
-
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/6523803f-3093-4b0b-8597-d5d399b60ef5" width="100%" controls>
-    Tu navegador no soporta videos de HTML5.
-  </video>
-</div>
-
----
-
 ## 🌆 What is AgentHQ?
 
 AgentHQ makes the invisible process of AI agents **visible**. Three specialized agents work together to process any task, while you watch them live in a **full-screen terminal dashboard** and/or on a **physical circuit** with moving servos, color-changing LEDs, and LCD displays.
@@ -68,6 +58,15 @@ User Input → Orchestrator → Xocas (Plan) → Momo (Research) → Llados (Out
 
 ---
 
+## 🎬 Demo
+
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/6523803f-3093-4b0b-8597-d5d399b60ef5" width="100%" controls>
+    Tu navegador no soporta videos de HTML5.
+  </video>
+</div>
+
+---
 ## 🚀 Quick Start
 
 ```bash
